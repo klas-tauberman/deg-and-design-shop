@@ -1,0 +1,79 @@
+/*
+ * Deg & Design — Design Tokens
+ * Source of truth: Figma file "degochdesign" (Primitives + Deg & Design Tokens collections)
+ * Dark mode is the primary/default experience.
+ */
+
+:root {
+  /* ─── Colors: neutral scale (warm, derived from brand palette) ─── */
+  --color-neutral-50:  #FAF7F5;
+  --color-neutral-100: #F2ECE6;
+  --color-neutral-200: #E2D6CE;
+  --color-neutral-300: #C8B8AE;
+  --color-neutral-400: #A68F83;
+  --color-neutral-500: #82695E;
+  --color-neutral-600: #624C42;
+  --color-neutral-700: #46332B;
+  --color-neutral-800: #2E201A;
+  --color-neutral-900: #160C08;
+
+  /* ─── Colors: brand ─── */
+  --color-brand-primary:    #FFC300;
+  --color-brand-secondary:  #F9F6F2;
+  --color-brand-on-primary: #2E2421;
+
+  /* ─── Colors: feedback ─── */
+  --color-success: #4CAF72;
+  --color-warning: #FFC300;
+  --color-error:   #E85C4A;
+  --color-info:    #4A90D9;
+
+  /* ─── Spacing ─── */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ─── Border radius ─── */
+  --radius-sm:    4px;
+  --radius-md:    8px;
+  --radius-lg:    12px;
+  --radius-xl:    16px;
+  --radius-block: 56px;
+  --radius-full:  9999px;
+}
+
+/* ─── Dark mode (default / primary experience) ─── */
+:root,
+[data-theme="dark"] {
+  --color-bg-default:  #060202;
+  --color-bg-surface:  #090402;
+  --color-bg-elevated: #120A08;
+
+  --color-text-primary:   #F9F6F2;
+  --color-text-secondary: #BFBFBF;
+  --color-text-disabled:  #624C42;
+
+  --color-border-default: #3A2821;
+  --color-border-strong:  #62483C;
+}
+
+/* ─── Light mode ─── */
+[data-theme="light"] {
+  --color-bg-default:  #FAF7F5;
+  --color-bg-surface:  #FFFFFF;
+  --color-bg-elevated: #F2ECE6;
+
+  --color-text-primary:   #2E2421;
+  --color-text-secondary: #82695E;
+  --color-text-disabled:  #A68F83;
+
+  --color-border-default: #E2D6CE;
+  --color-border-strong:  #A68F83;
+}

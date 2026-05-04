@@ -1,0 +1,80 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+/*
+ * Tailwind v4 theme — maps CSS custom properties to utility classes.
+ * "inline" means Tailwind references the vars at runtime (enables theming).
+ * Naming: --color-{name} → bg-{name}, text-{name}, border-{name}, etc.
+ */
+@theme inline {
+  /* Brand */
+  --color-brand-primary:    var(--color-brand-primary);
+  --color-brand-secondary:  var(--color-brand-secondary);
+  --color-brand-on-primary: var(--color-brand-on-primary);
+
+  /* Backgrounds (theme-aware) */
+  --color-bg-default:  var(--color-bg-default);
+  --color-bg-surface:  var(--color-bg-surface);
+  --color-bg-elevated: var(--color-bg-elevated);
+
+  /* Text (theme-aware) */
+  --color-text-primary:   var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-disabled:  var(--color-text-disabled);
+
+  /* Borders (theme-aware) */
+  --color-border-default: var(--color-border-default);
+  --color-border-strong:  var(--color-border-strong);
+
+  /* Neutrals */
+  --color-neutral-50:  var(--color-neutral-50);
+  --color-neutral-100: var(--color-neutral-100);
+  --color-neutral-200: var(--color-neutral-200);
+  --color-neutral-300: var(--color-neutral-300);
+  --color-neutral-400: var(--color-neutral-400);
+  --color-neutral-500: var(--color-neutral-500);
+  --color-neutral-600: var(--color-neutral-600);
+  --color-neutral-700: var(--color-neutral-700);
+  --color-neutral-800: var(--color-neutral-800);
+  --color-neutral-900: var(--color-neutral-900);
+
+  /* Feedback */
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-error:   var(--color-error);
+  --color-info:    var(--color-info);
+
+  /* Spacing */
+  --spacing-1:  var(--space-1);
+  --spacing-2:  var(--space-2);
+  --spacing-3:  var(--space-3);
+  --spacing-4:  var(--space-4);
+  --spacing-5:  var(--space-5);
+  --spacing-6:  var(--space-6);
+  --spacing-8:  var(--space-8);
+  --spacing-10: var(--space-10);
+  --spacing-12: var(--space-12);
+  --spacing-16: var(--space-16);
+
+  /* Border radius */
+  --radius-sm:    var(--radius-sm);
+  --radius-md:    var(--radius-md);
+  --radius-lg:    var(--radius-lg);
+  --radius-xl:    var(--radius-xl);
+  --radius-block: var(--radius-block);
+  --radius-full:  var(--radius-full);
+
+  /* Typography */
+  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-bg-default);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+}
