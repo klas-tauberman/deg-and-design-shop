@@ -1,21 +1,33 @@
-import Link from "next/link";
+import { Hero } from "@/components/ui/Hero";
+import { Footer } from "@/components/ui/Footer";
+import { HomeProducts } from "./_HomeProducts";
 
-/** Placeholder home page — Phase 3 will replace this with the full start screen. */
 export default function Home() {
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-6 px-8 py-32 text-center">
-      <h1 className="text-[56px] font-bold text-text-primary tracking-tight leading-none">
-        DEG&<br />DESIGN
-      </h1>
-      <p className="text-base text-text-secondary max-w-sm">
-        Lokala råvaror, 74% hydrering, minst 24 timmars jäsning.
-      </p>
-      <Link
-        href="/kitchen-sink"
-        className="inline-flex items-center px-5 py-3 rounded-full bg-brand-secondary text-brand-on-primary text-base font-medium hover:opacity-90 transition-opacity"
-      >
-        View component kitchen sink →
-      </Link>
+    <main className="bg-bg-default min-h-screen flex flex-col gap-4 p-4">
+      <Hero
+        headline={<>DEG&<br />DESIGN</>}
+        subtext="Lokala råvaror, 74% hydrering, minst 24 timmars jäsning, mjukt inkråm och en krispig, smakrik skorpa."
+        backgroundImage="/images/hero.webp"
+        backgroundImageAlt="Nybakat surdegsbröd"
+        className="h-[478px] md:h-[530px]"
+        nav={{
+          links: [
+            { label: "Bröd", href: "/brod" },
+            { label: "Om", href: "/om" },
+          ],
+          cta: { label: "Varukorg", href: "/varukorg" },
+        }}
+      />
+      <HomeProducts />
+      <Footer
+        contact={{
+          email: "info@tauberman.se",
+          phone: "+46 707 43 85 95",
+          instagram: "@degochdesign",
+        }}
+        copyright="Copyright © Deg & Design 2026"
+      />
     </main>
   );
 }

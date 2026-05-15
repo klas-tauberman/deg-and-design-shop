@@ -10,6 +10,7 @@ import { ContentCard, ProductCard } from "@/components/ui/Card";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
 import { Hero } from "@/components/ui/Hero";
+import { PanelDrawerDemo } from "./_PanelDrawerDemo";
 
 function Section({
   title,
@@ -47,6 +48,11 @@ export default function KitchenSink() {
             Every component · every variant · every state.
           </p>
         </div>
+
+        {/* ── Panel & Drawer ── */}
+        <Section title="Panel & Drawer">
+          <PanelDrawerDemo />
+        </Section>
 
         {/* ── Tokens: Colors ── */}
         <Section title="Color tokens">
