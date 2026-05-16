@@ -47,40 +47,38 @@ export function Panel({ open, onClose, children, className = "" }: PanelProps) {
             onClick={onClose}
             aria-hidden="true"
           />
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
-            <motion.div
-              key="panel"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby={labelId}
-              tabIndex={-1}
-              className={[
-                "pointer-events-auto relative w-full max-w-sm max-h-[85vh]",
-                "overflow-y-auto bg-bg-elevated rounded-[20px] p-6 outline-none",
-                className,
-              ].filter(Boolean).join(" ")}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
+          <motion.div
+            key="panel"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={labelId}
+            tabIndex={-1}
+            className={[
+              "fixed right-0 top-0 bottom-0 z-50 w-full max-w-sm",
+              "overflow-y-auto bg-bg-elevated rounded-l-[20px] p-6 outline-none",
+              className,
+            ].filter(Boolean).join(" ")}
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+          >
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 text-text-secondary hover:text-text-primary transition-colors"
+              aria-label="Stäng"
             >
-              <button
-                onClick={onClose}
-                className="absolute top-4 right-4 text-text-secondary hover:text-text-primary transition-colors"
-                aria-label="Stäng"
-              >
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <path
-                    d="M15 5L5 15M5 5l10 10"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </button>
-              <div id={labelId}>{children}</div>
-            </motion.div>
-          </div>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path
+                  d="M15 5L5 15M5 5l10 10"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
+            <div id={labelId}>{children}</div>
+          </motion.div>
         </>
       )}
     </AnimatePresence>,
