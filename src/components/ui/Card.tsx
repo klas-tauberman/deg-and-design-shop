@@ -31,7 +31,7 @@ export function ProductCard({
 }: ProductCardProps) {
   return (
     <article
-      className={`relative overflow-hidden rounded-[var(--radius-block)] h-[522px] flex items-end p-8 ${className}`}
+      className={`relative overflow-hidden rounded-[32px] md:rounded-[var(--radius-block)] h-[522px] flex items-end p-8 ${className}`}
     >
       {/* Background image */}
       <Image
@@ -53,7 +53,7 @@ export function ProductCard({
       />
 
       {/* Content */}
-      <div className="relative z-10 flex items-end justify-between w-full gap-4">
+      <div className="relative z-10 flex flex-col gap-3 md:flex-row md:items-end md:justify-between w-full">
         <div className="flex flex-col gap-1">
           <h2 className="text-[64px] font-bold leading-[60px] text-text-primary tracking-tight">
             {title}

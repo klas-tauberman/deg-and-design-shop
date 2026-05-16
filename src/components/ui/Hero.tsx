@@ -31,7 +31,7 @@ export function Hero({
 }: HeroProps) {
   return (
     <section
-      className={`relative overflow-hidden rounded-[var(--radius-block)] flex flex-col ${className}`}
+      className={`relative overflow-hidden rounded-[32px] md:rounded-[var(--radius-block)] flex flex-col ${className}`}
     >
       {/* Background image */}
       {backgroundImage && (
