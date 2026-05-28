@@ -4,7 +4,7 @@ import { HomeProducts } from "./_HomeProducts";
 
 export default function Home() {
   return (
-    <main className="bg-bg-default min-h-screen flex flex-col gap-4 p-4">
+    <main className="bg-bg-default min-h-screen flex flex-col gap-4 p-2 sm:p-4">
       <Hero
         headline={<>DEG&<br />DESIGN</>}
         subtext="Lokala råvaror, 74% hydrering, minst 24 timmars jäsning, mjukt inkråm och en krispig, smakrik skorpa."
