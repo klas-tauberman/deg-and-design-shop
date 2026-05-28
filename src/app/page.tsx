@@ -13,7 +13,7 @@ export default function Home() {
         className="h-[478px] md:h-[530px]"
         nav={{
           links: [
-            { label: "Bröd", href: "/brod" },
+            { label: "Bröd", href: "/brod", active: true },
             { label: "Om", href: "/om" },
           ],
           cta: { label: "Varukorg", href: "/varukorg" },

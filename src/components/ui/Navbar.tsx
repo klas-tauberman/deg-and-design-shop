@@ -7,6 +7,7 @@ import { Button } from "./Button";
 export interface NavLink {
   label: string;
   href: string;
+  active?: boolean;
 }
 
 export interface NavbarProps {
@@ -47,8 +48,9 @@ export function Navbar({
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="inline-flex items-center px-5 py-3 rounded-full text-base font-medium text-brand-on-primary bg-brand-secondary hover:opacity-90 transition-opacity whitespace-nowrap"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-base font-medium text-brand-on-primary bg-brand-secondary hover:opacity-90 transition-opacity whitespace-nowrap"
                 >
+                  {link.active && <span className="size-2 rounded-full bg-current shrink-0" />}
                   {link.label}
                 </Link>
               </li>
