@@ -20,7 +20,7 @@ function ProductContent() {
       <div className="flex flex-col gap-1">
         <p className="text-xs text-text-secondary uppercase tracking-wider">KRAV-ekologiskt</p>
         <h2 className="text-4xl font-bold text-text-primary tracking-tight">LEVAIN</h2>
-        <p className="text-base text-text-secondary leading-relaxed mt-1">
+        <p className="text-body-lg text-text-secondary mt-1">
           Bakat på lokalt odlat vårvete och uråldrigt emmer · minst 24 timmars jäsning ger ett
           djupt, komplext smakdjup och ett mjukt, öppet inkråm med krispig skorpa.
         </p>
@@ -35,7 +35,7 @@ function ProductContent() {
           <div key={item.name}>
             <p className="text-sm font-bold text-text-primary">{item.name}</p>
             {item.desc && (
-              <p className="text-sm text-text-secondary">{item.desc}</p>
+              <p className="text-body-md text-text-secondary">{item.desc}</p>
             )}
           </div>
         ))}

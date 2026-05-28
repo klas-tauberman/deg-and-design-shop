@@ -68,7 +68,7 @@ function ProductDetail({ product }: { product: Product }) {
         <h2 className="text-4xl font-bold text-text-primary tracking-tight">
           {product.title}
         </h2>
-        <p className="text-base text-text-secondary leading-relaxed mt-1">
+        <p className="text-body-lg text-text-secondary mt-1">
           {product.description}
         </p>
       </div>
@@ -82,7 +82,7 @@ function ProductDetail({ product }: { product: Product }) {
           <div key={item.name}>
             <p className="text-sm font-bold text-text-primary">{item.name}</p>
             {item.desc && (
-              <p className="text-sm text-text-secondary">{item.desc}</p>
+              <p className="text-body-md text-text-secondary">{item.desc}</p>
             )}
           </div>
         ))}

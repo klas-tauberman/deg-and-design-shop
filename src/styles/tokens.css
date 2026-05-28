@@ -28,6 +28,11 @@
   --color-error:   #E85C4A;
   --color-info:    #4A90D9;
 
+  /* ─── Typography scale ─── */
+  --text-body-lg: 18px;
+  --text-body-md: 16px;
+  --text-body-sm: 14px;
+
   /* ─── Spacing ─── */
   --space-1:  4px;
   --space-2:  8px;
