@@ -65,6 +65,10 @@
   --radius-full:  var(--radius-full);
 
   /* Typography scale */
+  --text-h3: var(--text-h3);
+  --text-h3--line-height: 1.4;
+  --text-h4: var(--text-h4);
+  --text-h4--line-height: 1.4;
   --text-body-lg: var(--text-body-lg);
   --text-body-lg--line-height: 1.7;
   --text-body-md: var(--text-body-md);

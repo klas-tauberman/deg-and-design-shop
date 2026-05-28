@@ -74,7 +74,7 @@ function ProductDetail({ product }: { product: Product }) {
       </div>
       <hr className="border-border-default" />
       <div className="flex flex-col gap-3">
-        <h3 className="text-xs font-bold text-text-primary uppercase tracking-widest">
+        <h3 className="text-h3 font-bold text-text-primary uppercase tracking-widest">
           Innehållsförteckning
         </h3>
         <hr className="border-border-default" />
