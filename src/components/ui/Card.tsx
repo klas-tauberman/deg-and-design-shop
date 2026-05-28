@@ -144,7 +144,7 @@ export function ContentCard({
 
 function ArrowOutwardIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 13 13" fill="currentColor" aria-hidden="true">
+    <svg className={className} viewBox="-5 -5.5 24 24" fill="currentColor" aria-hidden="true">
       <path d="M1.4 13L0 11.6L9.6 2H1V0H13V12H11V3.4L1.4 13Z" />
     </svg>
   );
