@@ -68,7 +68,7 @@ function ProductDetail({ product }: { product: Product }) {
         <h2 className="text-4xl font-bold text-text-primary tracking-tight">
           {product.title}
         </h2>
-        <p className="text-sm text-text-secondary leading-relaxed mt-1">
+        <p className="text-base text-text-secondary leading-relaxed mt-1">
           {product.description}
         </p>
       </div>
