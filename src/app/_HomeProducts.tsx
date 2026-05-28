@@ -58,6 +58,7 @@ const products: Product[] = [
 ];
 
 function ProductDetail({ product }: { product: Product }) {
+  const [qty, setQty] = useState(1);
   return (
     <div className="flex flex-col gap-4 pr-6">
       <div className="flex flex-col gap-1">
@@ -88,8 +89,12 @@ function ProductDetail({ product }: { product: Product }) {
       </div>
       <hr className="border-border-default" />
       <div className="flex items-center gap-3 pt-1">
-        <Button variant="ghost" size="sm">1</Button>
-        <Button variant="primary" size="sm">Köp · {product.price}</Button>
+        <div className="inline-flex items-center gap-4 px-5 py-3 rounded-full bg-brand-secondary text-brand-on-primary font-medium text-base">
+          <button onClick={() => setQty(q => Math.max(1, q - 1))} className="leading-none" aria-label="Minska antal">−</button>
+          <span>{qty}</span>
+          <button onClick={() => setQty(q => q + 1)} className="leading-none" aria-label="Öka antal">+</button>
+        </div>
+        <Button variant="primary" size="md">Köp · {product.price}</Button>
       </div>
     </div>
   );
