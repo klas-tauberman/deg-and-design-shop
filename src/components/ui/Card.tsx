@@ -31,7 +31,7 @@ export function ProductCard({
 }: ProductCardProps) {
   return (
     <article
-      className={`relative overflow-hidden rounded-[32px] md:rounded-[var(--radius-block)] h-[522px] flex items-end p-8 ${className}`}
+      className={`relative overflow-hidden rounded-[32px] md:rounded-[var(--radius-block)] h-[522px] flex items-end px-3 py-8 sm:p-8 ${className}`}
     >
       {/* Background image */}
       <Image
