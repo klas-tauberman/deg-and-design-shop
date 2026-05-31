@@ -70,11 +70,11 @@
   --text-h4: var(--text-h4);
   --text-h4--line-height: 1.4;
   --text-body-lg: var(--text-body-lg);
-  --text-body-lg--line-height: 1.7;
+  --text-body-lg--line-height: 1.5;
   --text-body-md: var(--text-body-md);
-  --text-body-md--line-height: 1.7;
+  --text-body-md--line-height: 1.5;
   --text-body-sm: var(--text-body-sm);
-  --text-body-sm--line-height: 1.6;
+  --text-body-sm--line-height: 1.5;
 
   /* Font family */
   --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
