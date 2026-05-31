@@ -75,12 +75,12 @@ function ProductDetail({ product }: { product: Product }) {
       <hr className="border-border-default" />
       <div className="flex flex-col gap-3">
         <h3 className="text-h3 font-bold text-text-primary uppercase tracking-widest">
-          Innehållsförteckning
+          Innehåller
         </h3>
         <hr className="border-border-default" />
         {product.ingredients.map((item) => (
           <div key={item.name}>
-            <p className="text-sm font-bold text-text-primary">{item.name}</p>
+            <p className="text-body-md font-bold text-text-primary">{item.name}</p>
             {item.desc && (
               <p className="text-body-md text-text-secondary">{item.desc}</p>
             )}
