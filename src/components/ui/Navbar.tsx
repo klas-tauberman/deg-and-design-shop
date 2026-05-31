@@ -37,7 +37,7 @@ export function Navbar({
 
   return (
     <header className={`w-full ${className}`}>
-      <nav className="flex items-center justify-between px-4 py-8 sm:px-8">
+      <nav className="flex items-center justify-between p-4 sm:p-8">
         {/* Left: logo + nav links */}
         <div className="flex items-center gap-1">
           {logo && <div className="mr-2">{logo}</div>}
