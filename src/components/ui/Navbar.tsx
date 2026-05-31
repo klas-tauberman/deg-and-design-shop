@@ -87,20 +87,12 @@ export function Navbar({
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden flex flex-col justify-center items-center size-10 rounded-full bg-brand-secondary gap-1.5"
+            className="md:hidden inline-flex items-center justify-center px-5 py-3 rounded-full bg-brand-secondary text-brand-on-primary hover:opacity-90 transition-opacity"
             aria-label={open ? "Stäng meny" : "Öppna meny"}
             aria-expanded={open}
             onClick={() => setOpen(!open)}
           >
-            <span
-              className={`block w-5 h-0.5 bg-brand-on-primary transition-transform duration-200 ${open ? "translate-y-2 rotate-45" : ""}`}
-            />
-            <span
-              className={`block w-5 h-0.5 bg-brand-on-primary transition-opacity duration-200 ${open ? "opacity-0" : ""}`}
-            />
-            <span
-              className={`block w-5 h-0.5 bg-brand-on-primary transition-transform duration-200 ${open ? "-translate-y-2 -rotate-45" : ""}`}
-            />
+            <MenuIcon className="size-5" />
           </button>
         </div>
       </nav>
@@ -155,6 +147,14 @@ export function Navbar({
         </div>
       )}
     </header>
+  );
+}
+
+function MenuIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="-3 -6 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M0 12V10H18V12H0ZM0 7V5H18V7H0ZM0 2V0H18V2H0Z" />
+    </svg>
   );
 }
 
