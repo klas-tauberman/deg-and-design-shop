@@ -161,9 +161,14 @@ export default function KitchenSink() {
 
         {/* ── Quantity Stepper ── */}
         <Section title="Quantity Stepper">
-          <Row>
-            <QuantityStepper />
-          </Row>
+          <div className="flex flex-col gap-4">
+            <p className="text-sm text-text-secondary">Default (min 1)</p>
+            <Row><QuantityStepper /></Row>
+            <p className="text-sm text-text-secondary">Min 0</p>
+            <Row><QuantityStepper min={0} /></Row>
+            <p className="text-sm text-text-secondary">Min 1, max 5</p>
+            <Row><QuantityStepper min={1} max={5} /></Row>
+          </div>
         </Section>
 
         {/* ── Button ── */}

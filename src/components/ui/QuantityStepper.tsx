@@ -5,15 +5,16 @@ import { useState } from "react";
 export interface QuantityStepperProps {
   value?: number;
   min?: number;
+  max?: number;
   onChange?: (value: number) => void;
 }
 
-export function QuantityStepper({ value, min = 1, onChange }: QuantityStepperProps) {
+export function QuantityStepper({ value, min = 1, max, onChange }: QuantityStepperProps) {
   const [internal, setInternal] = useState(min);
   const qty = value ?? internal;
 
   function set(next: number) {
-    const clamped = Math.max(min, next);
+    const clamped = Math.max(min, max !== undefined ? Math.min(max, next) : next);
     setInternal(clamped);
     onChange?.(clamped);
   }
