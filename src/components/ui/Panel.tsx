@@ -54,7 +54,7 @@ export function Panel({ open, onClose, children, className = "" }: PanelProps) {
             aria-labelledby={labelId}
             tabIndex={-1}
             className={[
-              "fixed right-0 top-0 bottom-0 z-50 w-full max-w-sm",
+              "fixed right-0 top-0 bottom-0 z-50 w-full max-w-[420px]",
               "overflow-y-auto bg-bg-elevated rounded-l-[20px] p-6 outline-none",
               className,
             ].filter(Boolean).join(" ")}
