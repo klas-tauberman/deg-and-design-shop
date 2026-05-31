@@ -65,25 +65,26 @@ export function Panel({ open, onClose, children, className = "" }: PanelProps) {
           >
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 text-text-secondary hover:text-text-primary transition-colors"
+              className="absolute top-4 right-4 size-12 rounded-full bg-brand-secondary inline-flex items-center justify-center text-brand-on-primary hover:opacity-90 transition-opacity"
               aria-label="Stäng"
             >
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <path
-                  d="M15 5L5 15M5 5l10 10"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-              </svg>
+              <CloseIcon className="size-5" />
             </button>
-            <div id={labelId}>{children}</div>
+            <div id={labelId} className="pt-12">{children}</div>
           </motion.div>
         </>
       )}
     </AnimatePresence>,
     document.body
   )
+}
+
+function CloseIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="-5 -5 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M1.4 14L0 12.6L5.6 7L0 1.4L1.4 0L7 5.6L12.6 0L14 1.4L8.4 7L14 12.6L12.6 14L7 8.4L1.4 14Z" />
+    </svg>
+  );
 }
 
 export default Panel

@@ -109,7 +109,8 @@ export function Navbar({
 
       {/* Mobile menu overlay */}
       {open && (
-        <div className="md:hidden fixed inset-0 z-50 bg-bg-default flex flex-col p-4 sm:p-8">
+        <div className="md:hidden fixed inset-0 z-50 bg-bg-default flex flex-col p-2 sm:p-4">
+          <div className="flex flex-col flex-1 p-4 sm:p-8">
           {/* Header row — mirrors the nav bar */}
           <div className="flex justify-end">
             <button
@@ -169,6 +170,7 @@ export function Navbar({
               )}
             </div>
           )}
+          </div>
         </div>
       )}
     </header>

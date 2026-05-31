@@ -63,7 +63,7 @@ export function Drawer({ open, onClose, children, className = "" }: DrawerProps)
               if (info.velocity.y > 500 || info.offset.y > 150) onClose()
             }}
             className={[
-              "fixed bottom-0 inset-x-0 z-50 outline-none",
+              "fixed bottom-0 inset-x-0 z-50 outline-none relative",
               "bg-bg-elevated rounded-t-[20px]",
               className,
             ].filter(Boolean).join(" ")}
@@ -72,6 +72,13 @@ export function Drawer({ open, onClose, children, className = "" }: DrawerProps)
             exit={{ y: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
           >
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 size-12 rounded-full bg-brand-secondary inline-flex items-center justify-center text-brand-on-primary hover:opacity-90 transition-opacity"
+              aria-label="Stäng"
+            >
+              <CloseIcon className="size-5" />
+            </button>
             {/* Only the handle triggers drag, preserving scroll in content */}
             <div
               className="flex justify-center pt-3 pb-1 cursor-grab active:cursor-grabbing touch-none"
@@ -91,6 +98,14 @@ export function Drawer({ open, onClose, children, className = "" }: DrawerProps)
     </AnimatePresence>,
     document.body
   )
+}
+
+function CloseIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="-5 -5 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M1.4 14L0 12.6L5.6 7L0 1.4L1.4 0L7 5.6L12.6 0L14 1.4L8.4 7L14 12.6L12.6 14L7 8.4L1.4 14Z" />
+    </svg>
+  );
 }
 
 export default Drawer
