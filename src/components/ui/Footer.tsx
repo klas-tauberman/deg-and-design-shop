@@ -43,7 +43,7 @@ export function Footer({
         <div className="flex flex-col gap-4">
           {logo && <div>{logo}</div>}
 
-          <div className="flex flex-wrap items-center gap-1">
+          <div className="flex flex-wrap items-center gap-2">
             {contact?.email && (
               <a
                 href={`mailto:${contact.email}`}

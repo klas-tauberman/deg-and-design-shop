@@ -17,6 +17,11 @@ export default function Home() {
             { label: "Om", href: "/om" },
           ],
           cta: { label: "Varukorg", href: "/varukorg" },
+          contact: {
+            email: "info@tauberman.se",
+            phone: "+46 707 43 85 95",
+            instagram: "@degochdesign",
+          },
         }}
       />
       <HomeProducts />

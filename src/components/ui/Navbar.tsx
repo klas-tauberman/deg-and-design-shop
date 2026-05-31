@@ -2,12 +2,17 @@
 
 import Link from "next/link";
 import { useState, ReactNode } from "react";
-import { Button } from "./Button";
 
 export interface NavLink {
   label: string;
   href: string;
   active?: boolean;
+}
+
+export interface NavContact {
+  email?: string;
+  phone?: string;
+  instagram?: string;
 }
 
 export interface NavbarProps {
@@ -19,6 +24,7 @@ export interface NavbarProps {
     onClick?: () => void;
     badge?: string;
   };
+  contact?: NavContact;
   className?: string;
 }
 
@@ -31,6 +37,7 @@ export function Navbar({
   logo,
   links = [],
   cta,
+  contact,
   className = "",
 }: NavbarProps) {
   const [open, setOpen] = useState(false);
@@ -39,11 +46,11 @@ export function Navbar({
     <header className={`w-full ${className}`}>
       <nav className="flex items-center justify-between p-4 sm:p-8">
         {/* Left: logo + nav links */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2">
           {logo && <div className="mr-2">{logo}</div>}
 
           {/* Desktop nav links */}
-          <ul className="hidden md:flex items-center gap-1">
+          <ul className="hidden md:flex items-center gap-2">
             {links.map((link) => (
               <li key={link.href}>
                 <Link
@@ -74,13 +81,16 @@ export function Navbar({
                   )}
                 </Link>
               ) : (
-                <Button variant="secondary" onClick={cta.onClick}>
+                <button
+                  onClick={cta.onClick}
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-base font-medium bg-brand-secondary text-brand-on-primary hover:opacity-90 transition-opacity whitespace-nowrap"
+                >
                   <BasketIcon className="size-5" />
                   {cta.label}
                   {cta.badge && (
                     <span className="text-brand-on-primary/60">({cta.badge})</span>
                   )}
-                </Button>
+                </button>
               )}
             </div>
           )}
@@ -99,18 +109,20 @@ export function Navbar({
 
       {/* Mobile menu overlay */}
       {open && (
-        <div className="md:hidden fixed inset-0 z-50 bg-bg-default flex flex-col px-8 py-8">
-          <div className="flex justify-end mb-12">
+        <div className="md:hidden fixed inset-0 z-50 bg-bg-default flex flex-col p-4 sm:p-8">
+          {/* Header row — mirrors the nav bar */}
+          <div className="flex justify-end">
             <button
-              className="size-10 rounded-full bg-brand-secondary flex items-center justify-center"
+              className="size-12 rounded-full bg-brand-secondary inline-flex items-center justify-center text-brand-on-primary hover:opacity-90 transition-opacity"
               aria-label="Stäng meny"
               onClick={() => setOpen(false)}
             >
-              <CloseIcon className="size-5 text-brand-on-primary" />
+              <CloseIcon className="size-5" />
             </button>
           </div>
 
-          <ul className="flex flex-col gap-2">
+          {/* Nav links */}
+          <ul className="flex flex-col gap-2 mt-8">
             {links.map((link) => (
               <li key={link.href}>
                 <Link
@@ -124,23 +136,36 @@ export function Navbar({
             ))}
           </ul>
 
-          {cta && (
-            <div className="mt-auto">
-              {cta.href ? (
-                <Link
-                  href={cta.href}
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-brand-secondary text-brand-on-primary text-base font-medium"
-                  onClick={() => setOpen(false)}
+          {/* Contact buttons at bottom */}
+          {contact && (
+            <div className="mt-auto flex flex-wrap gap-2">
+              {contact.email && (
+                <a
+                  href={`mailto:${contact.email}`}
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-brand-secondary text-brand-on-primary text-base font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
                 >
-                  <BasketIcon className="size-5" />
-                  {cta.label}
-                  {cta.badge && <span className="opacity-60">({cta.badge})</span>}
-                </Link>
-              ) : (
-                <Button variant="secondary" onClick={() => { cta.onClick?.(); setOpen(false); }}>
-                  <BasketIcon className="size-5" />
-                  {cta.label}
-                </Button>
+                  <MailIcon className="size-5" />
+                  {contact.email}
+                </a>
+              )}
+              {contact.phone && (
+                <a
+                  href={`tel:${contact.phone.replace(/\s/g, "")}`}
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-brand-secondary text-brand-on-primary text-base font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
+                >
+                  <PhoneIcon className="size-5" />
+                  {contact.phone}
+                </a>
+              )}
+              {contact.instagram && (
+                <a
+                  href={`https://instagram.com/${contact.instagram.replace("@", "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-brand-secondary text-brand-on-primary text-base font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
+                >
+                  Instagram
+                </a>
               )}
             </div>
           )}
@@ -158,6 +183,14 @@ function MenuIcon({ className }: { className?: string }) {
   );
 }
 
+function CloseIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="-5 -5 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M1.4 14L0 12.6L5.6 7L0 1.4L1.4 0L7 5.6L12.6 0L14 1.4L8.4 7L14 12.6L12.6 14L7 8.4L1.4 14Z" />
+    </svg>
+  );
+}
+
 function BasketIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 21.9758 19" fill="currentColor" aria-hidden="true">
@@ -166,10 +199,18 @@ function BasketIcon({ className }: { className?: string }) {
   );
 }
 
-function CloseIcon({ className }: { className?: string }) {
+function MailIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
-      <path d="M1.4 14L0 12.6L5.6 7L0 1.4L1.4 0L7 5.6L12.6 0L14 1.4L8.4 7L14 12.6L12.6 14L7 8.4L1.4 14Z" />
+    <svg className={className} viewBox="0 0 20 16" fill="currentColor" aria-hidden="true">
+      <path d="M2 16C1.45 16 0.979167 15.8042 0.5875 15.4125C0.195833 15.0208 0 14.55 0 14V2C0 1.45 0.195833 0.979167 0.5875 0.5875C0.979167 0.195833 1.45 0 2 0H18C18.55 0 19.0208 0.195833 19.4125 0.5875C19.8042 0.979167 20 1.45 20 2V14C20 14.55 19.8042 15.0208 19.4125 15.4125C19.0208 15.8042 18.55 16 18 16H2ZM10 9L2 4V14H18V4L10 9ZM10 7L18 2H2L10 7ZM2 4V2V14V4Z" />
+    </svg>
+  );
+}
+
+function PhoneIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 15 22" fill="currentColor" aria-hidden="true">
+      <path d="M2 22C1.45 22 0.979167 21.8042 0.5875 21.4125C0.195833 21.0208 0 20.55 0 20V2C0 1.45 0.195833 0.979167 0.5875 0.5875C0.979167 0.195833 1.45 0 2 0H12C12.55 0 13.0208 0.195833 13.4125 0.5875C13.8042 0.979167 14 1.45 14 2V5.1C14.3 5.21667 14.5417 5.4 14.725 5.65C14.9083 5.9 15 6.18333 15 6.5V8.5C15 8.81667 14.9083 9.1 14.725 9.35C14.5417 9.6 14.3 9.78333 14 9.9V20C14 20.55 13.8042 21.0208 13.4125 21.4125C13.0208 21.8042 12.55 22 12 22H2ZM2 20H12V2H2V20ZM7.7125 4.7125C7.90417 4.52083 8 4.28333 8 4C8 3.71667 7.90417 3.47917 7.7125 3.2875C7.52083 3.09583 7.28333 3 7 3C6.71667 3 6.47917 3.09583 6.2875 3.2875C6.09583 3.47917 6 3.71667 6 4C6 4.28333 6.09583 4.52083 6.2875 4.7125C6.47917 4.90417 6.71667 5 7 5C7.28333 5 7.52083 4.90417 7.7125 4.7125Z" />
     </svg>
   );
 }
