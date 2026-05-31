@@ -87,7 +87,7 @@ export function Navbar({
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden inline-flex items-center justify-center px-5 py-3 rounded-full bg-brand-secondary text-brand-on-primary hover:opacity-90 transition-opacity"
+            className="md:hidden inline-flex items-center justify-center size-12 rounded-full bg-brand-secondary text-brand-on-primary hover:opacity-90 transition-opacity"
             aria-label={open ? "Stäng meny" : "Öppna meny"}
             aria-expanded={open}
             onClick={() => setOpen(!open)}
