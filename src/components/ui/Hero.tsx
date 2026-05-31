@@ -64,16 +64,16 @@ export function Hero({
         {/* Headline + subtext */}
         <div className="flex flex-col gap-4 px-4 pb-4 mt-auto sm:px-8 sm:pb-8">
           <h1
-            className="font-bold text-text-primary tracking-tight"
-            style={{ fontSize: "clamp(72px, 12vw, 172px)", lineHeight: "0.82" }}
+            className="text-h1 font-bold text-text-primary tracking-tight"
+            style={{ lineHeight: "0.82" }}
           >
             {headline}
           </h1>
 
           {subtext && (
             <p
-              className="font-bold text-text-primary"
-              style={{ fontSize: "clamp(24px, 3vw, 40px)", lineHeight: "1.3" }}
+              className="text-[24px] md:text-[40px] font-bold text-text-primary"
+              style={{ lineHeight: "1.3" }}
             >
               {subtext}
             </p>
