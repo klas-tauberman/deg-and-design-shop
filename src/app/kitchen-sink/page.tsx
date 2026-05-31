@@ -42,7 +42,7 @@ export default function KitchenSink() {
       {/* ── Color palette ── */}
       <div className="px-8 py-12 flex flex-col gap-16">
         <div>
-          <h1 className="text-[56px] font-bold tracking-tight text-text-primary mb-2">
+          <h1 className="text-h1 font-bold tracking-tight text-text-primary mb-2">
             Kitchen Sink
           </h1>
           <p className="text-base text-text-secondary">

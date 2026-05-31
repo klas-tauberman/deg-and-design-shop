@@ -29,6 +29,7 @@
   --color-info:    #4A90D9;
 
   /* ─── Typography scale ─── */
+  --text-h1: 72px;
   --text-h3: 22px;
   --text-h4: 18px;
   --text-body-lg: 18px;
@@ -83,4 +84,10 @@
 
   --color-border-default: #E2D6CE;
   --color-border-strong:  #A68F83;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --text-h1: 140px;
+  }
 }
