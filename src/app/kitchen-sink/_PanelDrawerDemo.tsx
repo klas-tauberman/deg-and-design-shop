@@ -42,10 +42,10 @@ function ProductContent() {
       </div>
       <hr className="border-border-default" />
       <div className="flex items-center gap-3 pt-1">
-        <div className="inline-flex items-center gap-4 px-5 py-3 rounded-full bg-brand-secondary text-brand-on-primary font-medium text-base">
-          <button onClick={() => setQty(q => Math.max(1, q - 1))} className="leading-none" aria-label="Minska antal">−</button>
-          <span>{qty}</span>
-          <button onClick={() => setQty(q => q + 1)} className="leading-none" aria-label="Öka antal">+</button>
+        <div className="inline-flex items-stretch h-12 rounded-full bg-brand-secondary text-brand-on-primary font-medium text-base">
+          <button onClick={() => setQty(q => Math.max(1, q - 1))} className="w-11 flex items-center justify-center" aria-label="Minska antal">−</button>
+          <span className="w-10 flex items-center justify-center">{qty}</span>
+          <button onClick={() => setQty(q => q + 1)} className="w-11 flex items-center justify-center" aria-label="Öka antal">+</button>
         </div>
         <Button variant="primary" size="md">Köp · 70 kr</Button>
       </div>
