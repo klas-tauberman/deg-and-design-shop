@@ -1,9 +1,9 @@
 "use client"
 
-import { useState } from "react"
 import { Panel } from "@/components/ui/Panel"
 import { Drawer } from "@/components/ui/Drawer"
 import { Button } from "@/components/ui/Button"
+import { QuantityStepper } from "@/components/ui/QuantityStepper"
 
 const ingredients = [
   { name: "Vetemjöl (Qvarna vårvete)", desc: "Ekologiskt ljust siktat, protein ~12,5 g/100 g · KRAV" },
@@ -14,7 +14,6 @@ const ingredients = [
 ]
 
 function ProductContent() {
-  const [qty, setQty] = useState(1);
   return (
     <div className="flex flex-col gap-4 pr-6">
       <div className="flex flex-col gap-1">
@@ -42,15 +41,7 @@ function ProductContent() {
       </div>
       <hr className="border-border-default" />
       <div className="flex items-center gap-3 pt-1">
-        <div className="inline-flex items-center rounded-full bg-brand-secondary text-brand-on-primary text-base font-medium">
-          <button onClick={() => setQty(q => q + 1)} className="size-12 rounded-full bg-brand-secondary flex items-center justify-center transition-colors hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary shrink-0" aria-label="Öka antal">
-            <svg className="size-5" viewBox="-5 -5 24 24" fill="currentColor" aria-hidden="true"><path d="M6 8H0V6H6V0H8V6H14V8H8V14H6V8Z"/></svg>
-          </button>
-          <span className="w-8 text-center">{qty}</span>
-          <button onClick={() => setQty(q => Math.max(1, q - 1))} className="size-12 rounded-full bg-brand-secondary flex items-center justify-center transition-colors hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary shrink-0" aria-label="Minska antal">
-            <svg className="size-5" viewBox="-5 -11 24 24" fill="currentColor" aria-hidden="true"><path d="M0 2V0H14V2H0Z"/></svg>
-          </button>
-        </div>
+        <QuantityStepper />
         <Button variant="primary" size="md">Köp · 70 kr</Button>
       </div>
     </div>

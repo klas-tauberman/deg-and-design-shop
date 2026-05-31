@@ -11,6 +11,7 @@ import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
 import { Hero } from "@/components/ui/Hero";
 import { PanelDrawerDemo } from "./_PanelDrawerDemo";
+import { QuantityStepper } from "@/components/ui/QuantityStepper";
 
 function Section({
   title,
@@ -156,6 +157,13 @@ export default function KitchenSink() {
               </div>
             ))}
           </div>
+        </Section>
+
+        {/* ── Quantity Stepper ── */}
+        <Section title="Quantity Stepper">
+          <Row>
+            <QuantityStepper />
+          </Row>
         </Section>
 
         {/* ── Button ── */}
