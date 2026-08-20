@@ -63,7 +63,7 @@ export default function KitchenSink() {
               {[
                 ["bg-default", "var(--color-bg-default)", "#060202"],
                 ["bg-surface", "var(--color-bg-surface)", "#090402"],
-                ["bg-elevated", "var(--color-bg-elevated)", "#120A08"],
+                ["bg-elevated", "var(--color-bg-elevated)", "#1A1818"],
               ].map(([name, , hex]) => (
                 <div key={name} className="flex flex-col gap-1.5 w-28">
                   <div

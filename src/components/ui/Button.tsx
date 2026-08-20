@@ -14,7 +14,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  /** Accent fill — amber #FFC300 with dark text. Primary CTA (Köp, Beställ). */
+  /** Accent fill — amber #FFC300 with dark text. Primary CTA (Beställ). */
   primary:
     "bg-brand-primary text-brand-on-primary hover:opacity-90 active:opacity-80",
   /** Cream fill with dark text. Secondary actions (Läs mer, Tillbaka). */

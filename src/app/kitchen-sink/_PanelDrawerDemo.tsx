@@ -43,7 +43,7 @@ function ProductContent() {
       <hr className="border-border-default" />
       <div className="flex items-center gap-3 pt-1">
         <QuantityStepper />
-        <Button variant="primary" size="md">Köp · 70 kr</Button>
+        <Button variant="primary" size="md">Beställ · 70 kr</Button>
       </div>
     </div>
   )
