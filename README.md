@@ -50,4 +50,4 @@ npm run lint
 
 - **Phase 1** — Figma design system (variables, text styles, components) ✅
 - **Phase 2** — Next.js component library + design tokens ✅ *(current)*
-- **Phase 3** — Domain, product data, Supabase, Stripe, go live
+- **Phase 3** — Domain, product data, Supabase, beställningsflöde (betalning sker vid leverans, ingen Stripe), go live
