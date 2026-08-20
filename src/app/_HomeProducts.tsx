@@ -5,6 +5,8 @@ import { ProductCard } from "@/components/ui/Card";
 import { Panel } from "@/components/ui/Panel";
 import { Button } from "@/components/ui/Button";
 import { QuantityStepper } from "@/components/ui/QuantityStepper";
+import { Toast, ToastState } from "@/components/ui/Toast";
+import { formatPriceKr, parsePriceKr, useCart } from "@/lib/cart";
 
 interface Product {
   id: string;
@@ -41,7 +43,7 @@ const products: Product[] = [
     id: "frallor",
     image: "/images/frallor.webp",
     imageAlt: "Frallor med vallmo",
-    title: "FRALLOR",
+    title: "8st FRALLOR",
     subtitle: "vårvete, emmer & vallmo",
     price: "70 kr",
     label: "KRAV-ekologiskt",
@@ -58,7 +60,30 @@ const products: Product[] = [
   },
 ];
 
-function ProductDetail({ product }: { product: Product }) {
+function ProductDetail({
+  product,
+  onOrdered,
+}: {
+  product: Product;
+  onOrdered: (product: Product) => void;
+}) {
+  const [qty, setQty] = useState(1);
+  const { addItem } = useCart();
+
+  function handleOrder() {
+    addItem(
+      {
+        id: product.id,
+        title: product.title,
+        image: product.image,
+        imageAlt: product.imageAlt,
+        price: product.price,
+      },
+      qty
+    );
+    onOrdered(product);
+  }
+
   return (
     <div className="flex flex-col gap-4 pr-6">
       <div className="flex flex-col gap-1">
@@ -89,8 +114,10 @@ function ProductDetail({ product }: { product: Product }) {
       </div>
       <hr className="border-border-default" />
       <div className="flex items-center gap-3 pt-1">
-        <QuantityStepper />
-        <Button variant="primary" size="md">Köp · {product.price}</Button>
+        <QuantityStepper value={qty} onChange={setQty} />
+        <Button variant="primary" size="md" onClick={handleOrder}>
+          Lägg till · {formatPriceKr(parsePriceKr(product.price) * qty)}
+        </Button>
       </div>
     </div>
   );
@@ -99,6 +126,12 @@ function ProductDetail({ product }: { product: Product }) {
 export function HomeProducts() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const active = products.find((p) => p.id === activeId) ?? null;
+  const { addItem } = useCart();
+  const [toast, setToast] = useState<ToastState | null>(null);
+
+  function announceAdded(product: Product) {
+    setToast({ id: Date.now(), message: `${product.title} har lagts till i varukorgen` });
+  }
 
   return (
     <>
@@ -111,13 +144,35 @@ export function HomeProducts() {
           subtitle={product.subtitle}
           price={product.price}
           onReadMore={() => setActiveId(product.id)}
-          onBuy={() => setActiveId(product.id)}
+          onBuy={() => {
+            addItem(
+              {
+                id: product.id,
+                title: product.title,
+                image: product.image,
+                imageAlt: product.imageAlt,
+                price: product.price,
+              },
+              1
+            );
+            announceAdded(product);
+          }}
         />
       ))}
 
       <Panel open={active !== null} onClose={() => setActiveId(null)}>
-        {active && <ProductDetail product={active} />}
+        {active && (
+          <ProductDetail
+            product={active}
+            onOrdered={(product) => {
+              setActiveId(null);
+              announceAdded(product);
+            }}
+          />
+        )}
       </Panel>
+
+      <Toast toast={toast} onClose={() => setToast(null)} />
     </>
   );
 }

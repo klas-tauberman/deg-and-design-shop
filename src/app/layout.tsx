@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { CartProvider } from "@/lib/cart";
 
 export const metadata: Metadata = {
   title: "Deg & Design",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sv" data-theme="dark" className="h-full">
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <CartProvider>{children}</CartProvider>
+      </body>
     </html>
   );
 }

@@ -74,7 +74,7 @@ export function ProductCard({
           )}
           {onBuy && (
             <Button variant="primary" size="md" onClick={onBuy}>
-              Köp · {price}
+              Lägg till · {price}
             </Button>
           )}
         </div>
