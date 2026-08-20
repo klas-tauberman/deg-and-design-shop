@@ -62,14 +62,14 @@
 [data-theme="dark"] {
   --color-bg-default:  #060202;
   --color-bg-surface:  #090402;
-  --color-bg-elevated: #120A08;
+  --color-bg-elevated: #1A1818;
 
   --color-text-primary:   #F9F6F2;
   --color-text-secondary: #BFBFBF;
   --color-text-disabled:  #624C42;
 
-  --color-border-default: #3A2821;
-  --color-border-strong:  #62483C;
+  --color-border-default: #4A4545;
+  --color-border-strong:  #2E2C29;
 }
 
 /* ─── Light mode ─── */
