@@ -1,16 +1,28 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { QuantityStepper } from "@/components/ui/QuantityStepper";
 import { Footer } from "@/components/ui/Footer";
+import { Logo } from "@/components/ui/Logo";
 import { CartItem, formatPriceKr, parsePriceKr, useCart } from "@/lib/cart";
+
+const PickupMap = dynamic(() => import("@/components/ui/PickupMap"), {
+  ssr: false,
+  loading: () => <div className="w-full h-[220px] sm:h-[260px] bg-bg-surface animate-pulse" />,
+});
 
 const PICKUP_INFO =
   "Din beställning kommer vara färdig inom 2-3 dagar för upphämtning. Du hämtar ditt bröd på Norregatan 1 i Malmö. Undrar du om något så ring mig på 0707 43 85 95.";
+
+const PICKUP_ADDRESS = "Norregatan 1, Malmö";
+const PICKUP_LAT = 55.6074357;
+const PICKUP_LNG = 13.0092953;
+const PICKUP_DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(PICKUP_ADDRESS)}`;
 
 const contact = {
   email: "info@tauberman.se",
@@ -36,8 +48,11 @@ export default function Varukorg() {
   }
 
   return (
-    <main className="bg-bg-default min-h-screen flex flex-col gap-4 p-2 sm:p-4">
-      <div>
+    <main className="bg-bg-default min-h-screen flex flex-col gap-4 p-2 sm:p-4 max-w-[880px] mx-auto">
+      <div className="flex items-center justify-between">
+        <Link href="/" aria-label="Deg & Design — till startsidan">
+          <Logo className="h-10 sm:h-12 w-auto text-text-primary" />
+        </Link>
         <Link
           href="/"
           className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-base font-medium bg-brand-secondary text-brand-on-primary hover:opacity-90 transition-opacity"
@@ -64,23 +79,29 @@ export default function Varukorg() {
               <>
                 {items.map((item) => (
                   <div key={item.id} className="flex items-center gap-4">
-                    <div className="relative size-16 rounded-xl overflow-hidden shrink-0">
-                      <Image src={item.image} alt={item.imageAlt} fill className="object-cover" sizes="64px" />
+                    <div className="relative size-[88px] rounded-xl overflow-hidden shrink-0">
+                      <Image src={item.image} alt={item.imageAlt} fill className="object-cover" sizes="88px" />
                     </div>
-                    <p className="flex-1 text-body-lg font-bold text-text-primary">{item.title}</p>
-                    <p className="text-body-lg font-bold text-text-primary">{item.price}</p>
-                    <QuantityStepper
-                      value={item.qty}
-                      min={1}
-                      onChange={(qty) => updateQty(item.id, qty)}
-                    />
-                    <button
-                      onClick={() => removeItem(item.id)}
-                      className="size-12 rounded-full bg-border-default inline-flex items-center justify-center text-text-primary hover:bg-border-strong transition-colors shrink-0"
-                      aria-label={`Ta bort ${item.title}`}
-                    >
-                      <TrashIcon className="size-5" />
-                    </button>
+                    <div className="flex-1 flex flex-col gap-3">
+                      <div className="flex items-center justify-between">
+                        <p className="text-body-lg font-bold text-text-primary">{item.title}</p>
+                        <p className="text-body-lg font-bold text-text-primary">{item.price}</p>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <QuantityStepper
+                          value={item.qty}
+                          min={1}
+                          onChange={(qty) => updateQty(item.id, qty)}
+                        />
+                        <button
+                          onClick={() => removeItem(item.id)}
+                          className="size-12 rounded-full bg-[#2F2D2A] inline-flex items-center justify-center text-text-primary hover:bg-bg-elevated transition-colors shrink-0"
+                          aria-label={`Ta bort ${item.title}`}
+                        >
+                          <TrashIcon className="size-5" />
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 ))}
 
@@ -152,8 +173,8 @@ function Confirmation({ order }: { order: ConfirmedOrder }) {
 
         {order.items.map((item) => (
           <div key={item.id} className="flex items-center gap-4">
-            <div className="relative size-16 rounded-xl overflow-hidden shrink-0">
-              <Image src={item.image} alt={item.imageAlt} fill className="object-cover" sizes="64px" />
+            <div className="relative size-[88px] rounded-xl overflow-hidden shrink-0">
+              <Image src={item.image} alt={item.imageAlt} fill className="object-cover" sizes="88px" />
             </div>
             <p className="flex-1 text-body-lg font-bold text-text-primary">{item.title}</p>
             <p className="text-body-md text-text-secondary">{item.qty} st</p>
@@ -177,9 +198,33 @@ function Confirmation({ order }: { order: ConfirmedOrder }) {
 
 function PickupInfo() {
   return (
-    <section className="bg-bg-elevated rounded-[24px] p-6 sm:p-8 flex items-start gap-3">
-      <InfoIcon className="size-5 text-text-primary shrink-0 mt-0.5" />
-      <p className="text-body-md text-text-secondary">{PICKUP_INFO}</p>
+    <section className="bg-bg-elevated rounded-[24px] p-6 sm:p-8 flex flex-col gap-4">
+      <div className="flex items-start gap-3">
+        <InfoIcon className="size-5 text-text-primary shrink-0 mt-0.5" />
+        <p className="text-body-md text-text-secondary">{PICKUP_INFO}</p>
+      </div>
+
+      <div
+        className="rounded-xl overflow-hidden border border-border-default"
+        aria-label={`Karta: ${PICKUP_ADDRESS}`}
+      >
+        <PickupMap
+          address={PICKUP_ADDRESS}
+          lat={PICKUP_LAT}
+          lng={PICKUP_LNG}
+          className="w-full h-[220px] sm:h-[260px]"
+        />
+      </div>
+
+      <a
+        href={PICKUP_DIRECTIONS_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center justify-center gap-2 px-5 py-3 text-base font-medium rounded-full bg-transparent text-text-primary border border-border-default hover:border-border-strong hover:bg-bg-elevated active:opacity-80 transition-all duration-150 w-full sm:w-auto self-start"
+      >
+        <DirectionsIcon className="size-5" />
+        Vägbeskrivning
+      </a>
     </section>
   );
 }
@@ -197,6 +242,14 @@ function InfoIcon({ className }: { className?: string }) {
     <svg className={className} viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
       <circle cx="9" cy="9" r="8" />
       <path d="M9 8v5M9 5.5v.01" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function DirectionsIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+      <path d="M9 2 L14.5 15 L9 12 L3.5 15 Z" strokeLinejoin="round" />
     </svg>
   );
 }

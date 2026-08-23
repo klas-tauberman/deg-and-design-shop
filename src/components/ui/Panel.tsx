@@ -65,7 +65,7 @@ export function Panel({ open, onClose, children, className = "" }: PanelProps) {
           >
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 size-12 rounded-full bg-brand-secondary inline-flex items-center justify-center text-brand-on-primary hover:opacity-90 transition-opacity"
+              className="absolute top-4 right-4 size-12 rounded-full bg-[#2F2D2A] inline-flex items-center justify-center text-text-primary hover:bg-bg-elevated transition-colors"
               aria-label="Stäng"
             >
               <CloseIcon className="size-5" />
