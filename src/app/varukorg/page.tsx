@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
@@ -11,17 +10,11 @@ import { Footer } from "@/components/ui/Footer";
 import { Logo } from "@/components/ui/Logo";
 import { CartItem, formatPriceKr, parsePriceKr, useCart } from "@/lib/cart";
 
-const PickupMap = dynamic(() => import("@/components/ui/PickupMap"), {
-  ssr: false,
-  loading: () => <div className="w-full h-[220px] sm:h-[260px] bg-bg-surface animate-pulse" />,
-});
-
 const PICKUP_INFO =
-  "Din beställning kommer vara färdig inom 2-3 dagar för upphämtning. Du hämtar ditt bröd på Norregatan 1 i Malmö. Undrar du om något så ring mig på 0707 43 85 95.";
+  "Du hämtar ditt bröd på Norregatan 1 i Malmö. Undrar du om något så ring mig på 0707-43 85 95.";
 
 const PICKUP_ADDRESS = "Norregatan 1, Malmö";
-const PICKUP_LAT = 55.6074357;
-const PICKUP_LNG = 13.0092953;
+const PICKUP_MAP_EMBED_URL = `https://www.google.com/maps?q=${encodeURIComponent("Norregatan 1, 211 27 Malmö")}&output=embed`;
 const PICKUP_DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(PICKUP_ADDRESS)}`;
 
 const contact = {
@@ -145,8 +138,6 @@ export default function Varukorg() {
               Slutför beställning
             </Button>
           </section>
-
-          <PickupInfo />
         </>
       )}
 
@@ -176,8 +167,10 @@ function Confirmation({ order }: { order: ConfirmedOrder }) {
             <div className="relative size-[88px] rounded-xl overflow-hidden shrink-0">
               <Image src={item.image} alt={item.imageAlt} fill className="object-cover" sizes="88px" />
             </div>
-            <p className="flex-1 text-body-lg font-bold text-text-primary">{item.title}</p>
-            <p className="text-body-md text-text-secondary">{item.qty} st</p>
+            <div className="flex-1 flex flex-col gap-1">
+              <p className="text-body-lg font-bold text-text-primary">{item.title}</p>
+              <p className="text-body-md text-text-secondary">{item.qty} st</p>
+            </div>
             <p className="text-body-lg font-bold text-text-primary">
               {formatPriceKr(parsePriceKr(item.price) * item.qty)}
             </p>
@@ -199,21 +192,30 @@ function Confirmation({ order }: { order: ConfirmedOrder }) {
 function PickupInfo() {
   return (
     <section className="bg-bg-elevated rounded-[24px] p-6 sm:p-8 flex flex-col gap-4">
+      <div className="flex flex-col gap-3">
+        <h2 className="text-h3 font-bold text-text-primary uppercase tracking-widest">
+          Hitta hit
+        </h2>
+        <hr className="border-border-default" />
+      </div>
+
       <div className="flex items-start gap-3">
         <InfoIcon className="size-5 text-text-primary shrink-0 mt-0.5" />
         <p className="text-body-md text-text-secondary">{PICKUP_INFO}</p>
       </div>
 
-      <div
-        className="rounded-xl overflow-hidden border border-border-default"
-        aria-label={`Karta: ${PICKUP_ADDRESS}`}
-      >
-        <PickupMap
-          address={PICKUP_ADDRESS}
-          lat={PICKUP_LAT}
-          lng={PICKUP_LNG}
-          className="w-full h-[220px] sm:h-[260px]"
+      <div className="relative rounded-xl overflow-hidden border border-border-default">
+        <iframe
+          src={PICKUP_MAP_EMBED_URL}
+          className="w-full h-[220px] sm:h-[260px] border-0"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title={`Karta: ${PICKUP_ADDRESS}`}
         />
+        {/* Google's free embed (output=embed) never drops its own marker, so we
+            overlay the standard red pin at the frame's center — the embed always
+            centers the map on the query address, so this lines up exactly. */}
+        <PinIcon className="absolute left-1/2 top-1/2 size-9 -translate-x-1/2 -translate-y-full pointer-events-none drop-shadow-md" />
       </div>
 
       <a
@@ -250,6 +252,18 @@ function DirectionsIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
       <path d="M9 2 L14.5 15 L9 12 L3.5 15 Z" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function PinIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 32" fill="none" aria-hidden="true">
+      <path
+        d="M12 0C5.4 0 0 5.4 0 12c0 9 12 20 12 20s12-11 12-20c0-6.6-5.4-12-12-12Z"
+        fill="#EA4335"
+      />
+      <circle cx="12" cy="12" r="4.5" fill="#F9F6F2" />
     </svg>
   );
 }
