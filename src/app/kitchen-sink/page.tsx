@@ -6,7 +6,7 @@
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Badge } from "@/components/ui/Badge";
-import { ContentCard, ProductCard } from "@/components/ui/Card";
+import { ContentCard } from "@/components/ui/Card";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
 import { Hero } from "@/components/ui/Hero";

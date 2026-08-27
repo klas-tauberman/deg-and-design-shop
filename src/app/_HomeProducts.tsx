@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ProductCard } from "@/components/ui/Card";
 import { Panel } from "@/components/ui/Panel";
 import { Button } from "@/components/ui/Button";
@@ -129,9 +129,11 @@ export function HomeProducts() {
   const active = products.find((p) => p.id === activeId) ?? null;
   const { addItem } = useCart();
   const [toast, setToast] = useState<ToastState | null>(null);
+  const toastId = useRef(0);
 
   function announceAdded(product: Product) {
-    setToast({ id: Date.now(), title: product.title, image: product.image, imageAlt: product.imageAlt });
+    toastId.current += 1;
+    setToast({ id: toastId.current, title: product.title, image: product.image, imageAlt: product.imageAlt });
   }
 
   return (

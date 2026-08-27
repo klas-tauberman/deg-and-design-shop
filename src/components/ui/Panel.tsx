@@ -15,6 +15,7 @@ export function Panel({ open, onClose, children, className = "" }: PanelProps) {
   const labelId = useId()
   const [mounted, setMounted] = useState(false)
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- mount guard for the portal, not a sync-render loop
   useEffect(() => { setMounted(true) }, [])
 
   useEffect(() => {

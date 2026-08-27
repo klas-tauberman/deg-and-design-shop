@@ -28,6 +28,7 @@ export interface ToastProps {
 export function Toast({ toast, onClose, duration = 3000 }: ToastProps) {
   const [mounted, setMounted] = useState(false)
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- mount guard for the portal, not a sync-render loop
   useEffect(() => { setMounted(true) }, [])
 
   useEffect(() => {

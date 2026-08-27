@@ -16,6 +16,7 @@ export function Drawer({ open, onClose, children, className = "" }: DrawerProps)
   const [mounted, setMounted] = useState(false)
   const dragControls = useDragControls()
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- mount guard for the portal, not a sync-render loop
   useEffect(() => { setMounted(true) }, [])
 
   useEffect(() => {
