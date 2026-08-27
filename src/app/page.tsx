@@ -12,7 +12,7 @@ export default function Home() {
     <main className="bg-bg-default min-h-screen flex flex-col gap-4 p-2 sm:p-4 max-w-[1440px] mx-auto">
       <Hero
         headline={<>DEG&<br />DESIGN</>}
-        subtext="Lokala råvaror, minst 24 timmars jäsning, mjukt inkråm och en krispig, smakrik skorpa."
+        subtext="Lokala KRAV-märkta råvaror, lång kalljäsning, mjukt inkråm och en krispig, smakrik skorpa."
         backgroundImage="/images/hero.webp"
         backgroundImageAlt="Nybakat surdegsbröd"
         className="h-[478px] md:h-[530px]"

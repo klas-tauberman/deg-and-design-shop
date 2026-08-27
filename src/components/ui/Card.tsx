@@ -65,7 +65,7 @@ export function ProductCard({
           )}
         </div>
 
-        <div className="flex items-center gap-1 shrink-0">
+        <div className="flex items-center gap-2 shrink-0">
           {onReadMore && (
             <Button variant="secondary" size="md" onClick={onReadMore}>
               Läs mer

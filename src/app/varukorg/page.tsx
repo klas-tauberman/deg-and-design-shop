@@ -44,7 +44,7 @@ export default function Varukorg() {
     <main className="bg-bg-default min-h-screen flex flex-col gap-4 p-2 sm:p-4 max-w-[880px] mx-auto">
       <div className="flex items-center justify-between">
         <Link href="/" aria-label="Deg & Design — till startsidan">
-          <Logo className="h-10 sm:h-12 w-auto text-text-primary" />
+          <Logo className="h-12 w-auto text-text-primary" />
         </Link>
         <Link
           href="/"
@@ -107,7 +107,11 @@ export default function Varukorg() {
             )}
           </section>
 
-          <section className="bg-bg-elevated rounded-[24px] p-6 sm:p-8 flex flex-col gap-4">
+          <section
+            className={`bg-bg-elevated rounded-[24px] p-6 sm:p-8 flex flex-col gap-4 transition-opacity ${
+              items.length === 0 ? "opacity-40 pointer-events-none" : ""
+            }`}
+          >
             <div className="flex flex-col gap-3">
               <h2 className="text-h3 font-bold text-text-primary uppercase tracking-widest">
                 Dina uppgifter
@@ -126,6 +130,7 @@ export default function Varukorg() {
               placeholder="Din emailadress"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              disabled={items.length === 0}
             />
 
             <Button
@@ -199,10 +204,7 @@ function PickupInfo() {
         <hr className="border-border-default" />
       </div>
 
-      <div className="flex items-start gap-3">
-        <InfoIcon className="size-5 text-text-primary shrink-0 mt-0.5" />
-        <p className="text-body-md text-text-secondary">{PICKUP_INFO}</p>
-      </div>
+      <p className="text-body-md text-text-secondary">{PICKUP_INFO}</p>
 
       <div className="relative rounded-xl overflow-hidden border border-border-default">
         <iframe
@@ -235,15 +237,6 @@ function TrashIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="-5 -5 26 28" fill="currentColor" aria-hidden="true">
       <path d="M3 18C2.45 18 1.97917 17.8042 1.5875 17.4125C1.19583 17.0208 1 16.55 1 16V3H0V1H5V0H11V1H16V3H15V16C15 16.55 14.8042 17.0208 14.4125 17.4125C14.0208 17.8042 13.55 18 13 18H3ZM13 3H3V16H13V3ZM5 14H7V5H5V14ZM9 14H11V5H9V14Z" />
-    </svg>
-  );
-}
-
-function InfoIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-      <circle cx="9" cy="9" r="8" />
-      <path d="M9 8v5M9 5.5v.01" strokeLinecap="round" />
     </svg>
   );
 }

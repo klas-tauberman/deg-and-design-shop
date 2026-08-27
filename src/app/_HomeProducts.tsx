@@ -30,13 +30,12 @@ const products: Product[] = [
     price: "70 kr",
     label: "KRAV-ekologiskt",
     description:
-      "Bakat på lokalt odlat vårvete och uråldrigt emmer · minst 24 timmars jäsning ger ett djupt, komplext smakdjup och ett mjukt, öppet inkråm med krispig skorpa.",
+      "Bakat på lokalt odlat vårvete och emmer. Degen kalljäser under natten vilket ger ett djupt, komplext smakdjup och ett mjukt, öppet inkråm med krispig skorpa.",
     ingredients: [
-      { name: "Vetemjöl (Qvarna vårvete)", desc: "Ekologiskt ljust siktat, protein ~12,5 g/100 g · KRAV" },
-      { name: "Emmerfullkornsmjöl", desc: "Fullkornsmjöl av valsmalet emmer · KRAV · protein 14 g/100 g · fiber 12 g/100 g" },
-      { name: "Vatten", desc: "74 % hydrering" },
-      { name: "Surdegsstarter", desc: "Aktiv levain av vetemjöl & vatten" },
-      { name: "Havssalt", desc: "" },
+      { name: "Vetemjöl (Warnbrokvarn)", desc: "" },
+      { name: "Emmer fullkorn (Limbacka kvarn)", desc: "" },
+      { name: "Vatten", desc: "" },
+      { name: "Salt", desc: "" },
     ],
   },
   {
@@ -48,14 +47,14 @@ const products: Product[] = [
     price: "70 kr",
     label: "KRAV-ekologiskt",
     description:
-      "Luftiga frallor bakade på vårvete och emmer med ett knaprigt vallmotäcke. Perfekta till frukost eller lunch.",
+      "Luftiga frallor bakade på lokalt odlat vårvete och emmer med ett knaprigt täcke av vallmo- och sesamfrön. Perfekta till frukost eller lunch.",
     ingredients: [
-      { name: "Vetemjöl (Qvarna vårvete)", desc: "Ekologiskt ljust siktat · KRAV" },
-      { name: "Emmerfullkornsmjöl", desc: "Fullkornsmjöl av valsmalet emmer · KRAV" },
+      { name: "Vetemjöl (Warnbrokvarn)", desc: "" },
+      { name: "Emmer fullkorn (Limbacka kvarn)", desc: "" },
       { name: "Vallmofrön", desc: "" },
-      { name: "Vatten", desc: "72 % hydrering" },
-      { name: "Surdegsstarter", desc: "Aktiv levain av vetemjöl & vatten" },
-      { name: "Havssalt", desc: "" },
+      { name: "Sesamfrön", desc: "" },
+      { name: "Vatten", desc: "" },
+      { name: "Salt", desc: "" },
     ],
   },
 ];
@@ -93,7 +92,7 @@ function ProductDetail({
         <h2 className="text-4xl font-bold text-text-primary tracking-tight">
           {product.title}
         </h2>
-        <p className="text-body-lg text-text-secondary mt-1">
+        <p className="text-body-lg font-normal text-text-primary mt-1">
           {product.description}
         </p>
       </div>
@@ -103,14 +102,16 @@ function ProductDetail({
           Innehåller
         </h3>
         <hr className="border-border-default" />
-        {product.ingredients.map((item) => (
-          <div key={item.name}>
-            <p className="text-body-md font-bold text-text-primary">{item.name}</p>
-            {item.desc && (
-              <p className="text-body-md text-text-secondary">{item.desc}</p>
-            )}
-          </div>
-        ))}
+        <ul className="flex flex-col gap-3 list-disc pl-5 marker:text-text-secondary">
+          {product.ingredients.map((item) => (
+            <li key={item.name}>
+              <p className="text-body-md font-normal text-text-primary">{item.name}</p>
+              {item.desc && (
+                <p className="text-body-md text-text-secondary">{item.desc}</p>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
       <hr className="border-border-default" />
       <div className="flex items-center gap-3 pt-1">
@@ -130,7 +131,7 @@ export function HomeProducts() {
   const [toast, setToast] = useState<ToastState | null>(null);
 
   function announceAdded(product: Product) {
-    setToast({ id: Date.now(), message: `${product.title} har lagts till i varukorgen` });
+    setToast({ id: Date.now(), title: product.title, image: product.image, imageAlt: product.imageAlt });
   }
 
   return (
