@@ -18,7 +18,7 @@ export default function Home() {
         className="h-[478px] md:h-[530px]"
         nav={{
           links: [
-            { label: "Bröd", href: "/brod", active: true },
+            { label: "Bröd", href: "/", active: true },
             { label: "Om", href: "/om" },
           ],
           cta: { label: "Varukorg", href: "/varukorg", badge: count > 0 ? String(count) : undefined },

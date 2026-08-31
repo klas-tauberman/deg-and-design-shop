@@ -47,7 +47,7 @@ export function Toast({ toast, onClose, duration = 3000 }: ToastProps) {
             key={toast.id}
             role="status"
             aria-live="polite"
-            className="pointer-events-auto flex items-center gap-4 p-3 rounded-xl bg-bg-surface shadow-lg"
+            className="pointer-events-auto flex items-center gap-4 p-3 rounded-xl bg-bg-surface border border-border-default shadow-lg max-w-[calc(100vw-2rem)]"
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
@@ -57,7 +57,7 @@ export function Toast({ toast, onClose, duration = 3000 }: ToastProps) {
               <div className="relative size-12 rounded-lg overflow-hidden shrink-0">
                 <Image src={toast.image} alt={toast.imageAlt} fill className="object-cover" sizes="48px" />
               </div>
-              <p className="text-base font-medium text-text-primary whitespace-nowrap">
+              <p className="text-base font-medium text-text-primary max-w-[180px]">
                 {toast.title} tillagt i varukorgen
               </p>
             </div>
