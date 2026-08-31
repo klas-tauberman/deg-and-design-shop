@@ -32,7 +32,7 @@ const products: Product[] = [
     description:
       "Bakat på lokalt odlat vårvete och emmer. Degen kalljäser under natten vilket ger ett djupt, komplext smakdjup och ett mjukt, öppet inkråm med krispig skorpa.",
     ingredients: [
-      { name: "Vetemjöl (Warnbrokvarn)", desc: "" },
+      { name: "Vetemjöl (Warbro kvarn)", desc: "" },
       { name: "Emmer fullkorn (Limbacka kvarn)", desc: "" },
       { name: "Vatten", desc: "" },
       { name: "Salt", desc: "" },
@@ -49,7 +49,7 @@ const products: Product[] = [
     description:
       "Luftiga frallor bakade på lokalt odlat vårvete och emmer med ett knaprigt täcke av vallmo- och sesamfrön. Perfekta till frukost eller lunch.",
     ingredients: [
-      { name: "Vetemjöl (Warnbrokvarn)", desc: "" },
+      { name: "Vetemjöl (Warbro kvarn)", desc: "" },
       { name: "Emmer fullkorn (Limbacka kvarn)", desc: "" },
       { name: "Vallmofrön", desc: "" },
       { name: "Sesamfrön", desc: "" },
@@ -167,10 +167,7 @@ export function HomeProducts() {
         {active && (
           <ProductDetail
             product={active}
-            onOrdered={(product) => {
-              setActiveId(null);
-              announceAdded(product);
-            }}
+            onOrdered={(product) => announceAdded(product)}
           />
         )}
       </Panel>

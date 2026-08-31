@@ -33,11 +33,27 @@ export default function Varukorg() {
   const { items, updateQty, removeItem, clear, total } = useCart();
   const [email, setEmail] = useState("");
   const [confirmedOrder, setConfirmedOrder] = useState<ConfirmedOrder | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if (items.length === 0 || !email) return;
-    setConfirmedOrder({ items, total, email });
-    clear();
+    setSubmitting(true);
+    setError("");
+    try {
+      const res = await fetch("/api/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, items, total }),
+      });
+      if (!res.ok) throw new Error();
+      setConfirmedOrder({ items, total, email });
+      clear();
+    } catch {
+      setError("Något gick fel. Försök igen om en stund.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -58,7 +74,7 @@ export default function Varukorg() {
         <Confirmation order={confirmedOrder} />
       ) : (
         <>
-          <section className="bg-bg-elevated rounded-[24px] p-6 sm:p-8 flex flex-col gap-4">
+          <section className="bg-bg-elevated rounded-[24px] p-3 sm:p-8 flex flex-col gap-4">
             <div className="flex flex-col gap-3">
               <h2 className="text-h3 font-bold text-text-primary uppercase tracking-widest">
                 Varukorg
@@ -67,7 +83,11 @@ export default function Varukorg() {
             </div>
 
             {items.length === 0 ? (
-              <p className="text-body-md text-text-secondary">Din varukorg är tom.</p>
+              <p className="text-body-md text-text-secondary">
+                Din varukorg är tom.
+                <br />
+                Gå tillbaka och välj ett Levain, vetja.
+              </p>
             ) : (
               <>
                 {items.map((item) => (
@@ -108,7 +128,7 @@ export default function Varukorg() {
           </section>
 
           <section
-            className={`bg-bg-elevated rounded-[24px] p-6 sm:p-8 flex flex-col gap-4 transition-opacity ${
+            className={`bg-bg-elevated rounded-[24px] p-3 sm:p-8 flex flex-col gap-4 transition-opacity ${
               items.length === 0 ? "opacity-40 pointer-events-none" : ""
             }`}
           >
@@ -136,17 +156,19 @@ export default function Varukorg() {
             <Button
               variant="primary"
               size="md"
-              disabled={items.length === 0 || !email}
+              disabled={items.length === 0 || !email || submitting}
               onClick={handleSubmit}
               className="w-full"
             >
-              Slutför beställning
+              {submitting ? "Skickar..." : "Slutför beställning"}
             </Button>
+
+            {error && <p className="text-body-sm text-red-500">{error}</p>}
           </section>
         </>
       )}
 
-      <Footer contact={contact} copyright="Copyright © Deg & Design 2026" />
+      <Footer contact={contact} copyright="Copyright © Deg & Design 2026" className="mt-auto" />
     </main>
   );
 }
@@ -154,7 +176,7 @@ export default function Varukorg() {
 function Confirmation({ order }: { order: ConfirmedOrder }) {
   return (
     <>
-      <section className="bg-bg-elevated rounded-[24px] p-6 sm:p-8 flex flex-col gap-4">
+      <section className="bg-bg-elevated rounded-[24px] p-3 sm:p-8 flex flex-col gap-4">
         <div className="flex flex-col gap-3">
           <h2 className="text-h3 font-bold text-text-primary uppercase tracking-widest">
             Tack för din beställning
@@ -196,7 +218,7 @@ function Confirmation({ order }: { order: ConfirmedOrder }) {
 
 function PickupInfo() {
   return (
-    <section className="bg-bg-elevated rounded-[24px] p-6 sm:p-8 flex flex-col gap-4">
+    <section className="bg-bg-elevated rounded-[24px] p-3 sm:p-8 flex flex-col gap-4">
       <div className="flex flex-col gap-3">
         <h2 className="text-h3 font-bold text-text-primary uppercase tracking-widest">
           Hitta hit
