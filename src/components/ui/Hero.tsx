@@ -62,7 +62,7 @@ export function Hero({
         {nav && <Navbar {...nav} />}
 
         {/* Headline + subtext */}
-        <div className="flex flex-col gap-4 px-4 pb-4 mt-auto sm:px-8 sm:pb-8">
+        <div className="flex flex-col gap-4 px-3 pb-3 mt-auto sm:px-8 sm:pb-8">
           <h1
             className="text-h1 font-bold text-text-primary tracking-tight"
             style={{ lineHeight: "0.82" }}
