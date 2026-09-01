@@ -40,6 +40,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const saved = localStorage.getItem(CART_STORAGE_KEY)
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time load from localStorage on mount, not a sync-render loop
       if (saved) setItems(JSON.parse(saved))
     } catch {
       // ignore corrupt or unavailable storage
