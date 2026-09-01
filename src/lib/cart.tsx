@@ -1,6 +1,8 @@
 "use client"
 
-import { createContext, useContext, useMemo, useState, ReactNode } from "react"
+import { createContext, useContext, useMemo, useState, useEffect, ReactNode } from "react"
+
+const CART_STORAGE_KEY = "degochdesign-cart"
 
 export interface CartItem {
   id: string
@@ -33,6 +35,26 @@ const CartContext = createContext<CartContextValue | null>(null)
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([])
+  const [hydrated, setHydrated] = useState(false)
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(CART_STORAGE_KEY)
+      if (saved) setItems(JSON.parse(saved))
+    } catch {
+      // ignore corrupt or unavailable storage
+    }
+    setHydrated(true)
+  }, [])
+
+  useEffect(() => {
+    if (!hydrated) return
+    try {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items))
+    } catch {
+      // ignore write failures (private mode, quota, etc.)
+    }
+  }, [items, hydrated])
 
   function addItem(item: Omit<CartItem, "qty">, qty: number) {
     setItems((prev) => {
