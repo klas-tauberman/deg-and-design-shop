@@ -9,7 +9,7 @@ export default function Om() {
   const { count } = useCart();
 
   return (
-    <main className="bg-bg-default min-h-screen flex flex-col gap-4 p-2 sm:p-4 max-w-[1440px] mx-auto">
+    <main className="bg-bg-default min-h-screen flex flex-col gap-4 p-2 sm:p-4 w-full max-w-[1440px] mx-auto">
       <section className="relative overflow-hidden rounded-[32px] md:rounded-[var(--radius-block)] flex flex-col">
         <Image
           src="/images/hero.webp"

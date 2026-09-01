@@ -9,7 +9,7 @@ export default function Home() {
   const { count } = useCart();
 
   return (
-    <main className="bg-bg-default min-h-screen flex flex-col gap-4 p-2 sm:p-4 max-w-[1440px] mx-auto">
+    <main className="bg-bg-default min-h-screen flex flex-col gap-4 p-2 sm:p-4 w-full max-w-[1440px] mx-auto">
       <Hero
         headline={<>DEG&<br />DESIGN</>}
         subtext="Lokala KRAV-märkta råvaror, lång kalljäsning, mjukt inkråm och en krispig, smakrik skorpa."

@@ -57,7 +57,7 @@ export default function Varukorg() {
   }
 
   return (
-    <main className="bg-bg-default min-h-screen flex flex-col gap-4 p-2 sm:p-4 max-w-[880px] mx-auto">
+    <main className="bg-bg-default min-h-screen flex flex-col gap-4 p-2 sm:p-4 w-full max-w-[880px] mx-auto">
       <div className="flex items-center justify-between">
         <Link href="/" aria-label="Deg & Design — till startsidan">
           <Logo className="h-12 w-auto text-text-primary" />
