@@ -85,6 +85,9 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Always reserve scrollbar space so pages with/without a scrollbar
+     don't get different viewport widths (and thus different layout). */
+  scrollbar-gutter: stable;
 }
 
 body {
