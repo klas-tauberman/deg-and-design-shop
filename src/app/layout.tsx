@@ -19,14 +19,14 @@ export const metadata: Metadata = {
     siteName: "Deg & Design",
     locale: "sv_SE",
     type: "website",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Deg & Design — hembakat surdegsbröd" }],
+    images: [{ url: "/opengraph-image.jpg", width: 1200, height: 630, alt: "Deg & Design — hembakat surdegsbröd" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Deg & Design — Hembakat surdegsbröd",
     description:
       "Lokala KRAV-märkta råvaror, lång kalljäsning, mjukt inkråm och en krispig, smakrik skorpa.",
-    images: ["/opengraph-image"],
+    images: ["/opengraph-image.jpg"],
   },
   robots: { index: true, follow: true },
 };
