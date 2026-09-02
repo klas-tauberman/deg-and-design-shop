@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
@@ -35,6 +35,10 @@ export default function Varukorg() {
   const [confirmedOrder, setConfirmedOrder] = useState<ConfirmedOrder | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (confirmedOrder) window.scrollTo(0, 0);
+  }, [confirmedOrder]);
 
   async function handleSubmit() {
     if (items.length === 0 || !email) return;
