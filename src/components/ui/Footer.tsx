@@ -47,7 +47,7 @@ export function Footer({
             {contact?.email && (
               <a
                 href={`mailto:${contact.email}`}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-brand-secondary text-brand-on-primary text-base font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#2F2D2A] text-text-primary text-base font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
               >
                 <MailIcon className="size-5 shrink-0" />
                 {contact.email}
@@ -57,7 +57,7 @@ export function Footer({
             {contact?.phone && (
               <a
                 href={`tel:${contact.phone.replace(/\s/g, "")}`}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-brand-secondary text-brand-on-primary text-base font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#2F2D2A] text-text-primary text-base font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
               >
                 <PhoneIcon className="size-5 shrink-0" />
                 {contact.phone}
@@ -69,7 +69,7 @@ export function Footer({
                 href={`https://instagram.com/${contact.instagram.replace("@", "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-brand-secondary text-brand-on-primary text-base font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#2F2D2A] text-text-primary text-base font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
               >
                 Instagram
               </a>
@@ -81,7 +81,7 @@ export function Footer({
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="inline-flex items-center px-5 py-3 rounded-full bg-brand-secondary text-brand-on-primary text-base font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
+                  className="inline-flex items-center px-5 py-3 rounded-full bg-[#2F2D2A] text-text-primary text-base font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
                 >
                   {link.label}
                 </Link>

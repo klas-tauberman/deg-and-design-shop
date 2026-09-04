@@ -62,7 +62,7 @@ export default function Varukorg() {
 
   return (
     <main className="bg-bg-default min-h-screen flex flex-col gap-4 p-2 sm:p-4 w-full max-w-[880px] mx-auto">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between pt-2">
         <Link href="/" aria-label="Deg & Design — till startsidan">
           <Logo className="h-12 w-auto text-text-primary" />
         </Link>
@@ -78,7 +78,7 @@ export default function Varukorg() {
         <Confirmation order={confirmedOrder} />
       ) : (
         <>
-          <section className="bg-bg-elevated rounded-[24px] p-3 sm:p-8 flex flex-col gap-4">
+          <section className="bg-bg-elevated rounded-[24px] p-4 sm:p-8 flex flex-col gap-4">
             <div className="flex flex-col gap-3">
               <h2 className="text-h3 font-bold text-text-primary uppercase tracking-widest">
                 Varukorg
@@ -132,7 +132,7 @@ export default function Varukorg() {
           </section>
 
           <section
-            className={`bg-bg-elevated rounded-[24px] p-3 sm:p-8 flex flex-col gap-4 transition-opacity ${
+            className={`bg-bg-elevated rounded-[24px] p-4 sm:p-8 flex flex-col gap-4 transition-opacity ${
               items.length === 0 ? "opacity-40 pointer-events-none" : ""
             }`}
           >
@@ -156,6 +156,21 @@ export default function Varukorg() {
               onChange={(e) => setEmail(e.target.value)}
               disabled={items.length === 0}
             />
+          </section>
+
+          <section
+            className={`bg-bg-elevated rounded-[24px] p-4 sm:p-8 flex flex-col gap-4 transition-opacity ${
+              items.length === 0 ? "opacity-40 pointer-events-none" : ""
+            }`}
+          >
+            <div className="flex flex-col gap-3">
+              <h2 className="text-h3 font-bold text-text-primary uppercase tracking-widest">
+                Slutför beställning
+              </h2>
+              <hr className="border-border-default" />
+            </div>
+
+            <p className="text-body-md text-text-secondary">Du betalar när du hämtar brödet.</p>
 
             <Button
               variant="primary"
@@ -172,7 +187,7 @@ export default function Varukorg() {
         </>
       )}
 
-      <Footer contact={contact} copyright="Copyright © Deg & Design 2026" className="mt-auto" />
+      <Footer contact={contact} copyright="Copyright © Deg & Design 2026" className="mt-auto pt-10 sm:pt-0" />
     </main>
   );
 }
@@ -180,7 +195,7 @@ export default function Varukorg() {
 function Confirmation({ order }: { order: ConfirmedOrder }) {
   return (
     <>
-      <section className="bg-bg-elevated rounded-[24px] p-3 sm:p-8 flex flex-col gap-4">
+      <section className="bg-bg-elevated rounded-[24px] p-4 sm:p-8 flex flex-col gap-4">
         <div className="flex flex-col gap-3">
           <h2 className="text-h3 font-bold text-text-primary uppercase tracking-widest">
             Tack för din beställning
@@ -222,7 +237,7 @@ function Confirmation({ order }: { order: ConfirmedOrder }) {
 
 function PickupInfo() {
   return (
-    <section className="bg-bg-elevated rounded-[24px] p-3 sm:p-8 flex flex-col gap-4">
+    <section className="bg-bg-elevated rounded-[24px] p-4 sm:p-8 flex flex-col gap-4">
       <div className="flex flex-col gap-3">
         <h2 className="text-h3 font-bold text-text-primary uppercase tracking-widest">
           Hitta hit
