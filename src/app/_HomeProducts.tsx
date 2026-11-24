@@ -11,6 +11,7 @@ import { formatPriceKr, parsePriceKr, useCart } from "@/lib/cart";
 interface Product {
   id: string;
   image: string;
+  mobileImage?: string;
   imageAlt: string;
   title: string;
   subtitle: string;
@@ -18,11 +19,14 @@ interface Product {
   label: string;
   description: string;
   ingredients: { name: string; desc: string }[];
+  weight?: string;
+  hidden?: boolean;
 }
 
 const products: Product[] = [
   {
     id: "levain",
+    weight: "ca 1 kg",
     image: "/images/levain.webp",
     imageAlt: "Levain surdegsbröd skivat",
     title: "LEVAIN",
@@ -39,7 +43,46 @@ const products: Product[] = [
     ],
   },
   {
+    id: "levain-stort",
+    weight: "ca 1,6 kg",
+    image: "/images/levain-stort.webp",
+    mobileImage: "/images/levain-stort-mobil.webp",
+    imageAlt: "Stort levain surdegsbröd",
+    title: "STORT LEVAIN",
+    subtitle: "vårvete & emmer",
+    price: "120 kr",
+    label: "KRAV-ekologiskt",
+    description:
+      "Bakat på lokalt odlat vårvete och emmer. Degen kalljäser under natten vilket ger ett djupt, komplext smakdjup och ett mjukt, öppet inkråm med krispig skorpa.",
+    ingredients: [
+      { name: "Vetemjöl (Warbro kvarn)", desc: "" },
+      { name: "Emmer fullkorn (Limbacka kvarn)", desc: "" },
+      { name: "Vatten", desc: "" },
+      { name: "Salt", desc: "" },
+    ],
+  },
+  {
+    id: "emmer",
+    weight: "ca 800 g",
+    image: "/images/emmer.webp",
+    imageAlt: "Skivat emmerbröd på surdeg",
+    title: "EMMER",
+    subtitle: "emmer & enkorn",
+    price: "70 kr",
+    label: "KRAV-ekologiskt",
+    description:
+      "Bakat på fullkorn av emmer och enkorn, två av våra äldsta vetesorter, och jäst på vetesurdeg. Degen kalljäser under natten vilket ger ett djupt, komplext smakdjup, ett mörkt inkråm och en krispig skorpa.",
+    ingredients: [
+      { name: "Emmer fullkorn (Limbacka kvarn)", desc: "" },
+      { name: "Enkorn fullkorn (Warbro kvarn)", desc: "" },
+      { name: "Vetesurdeg", desc: "" },
+      { name: "Vatten", desc: "" },
+      { name: "Salt", desc: "" },
+    ],
+  },
+  {
     id: "frallor",
+    hidden: true,
     image: "/images/frallor.webp",
     imageAlt: "Frallor med vallmo",
     title: "8st FRALLOR",
@@ -95,6 +138,9 @@ function ProductDetail({
         <p className="text-body-lg font-normal text-text-primary mt-1">
           {product.description}
         </p>
+        {product.weight && (
+          <p className="text-body-md text-text-secondary mt-1">Vikt: {product.weight}</p>
+        )}
       </div>
       <hr className="border-border-default" />
       <div className="flex flex-col gap-3">
@@ -138,10 +184,11 @@ export function HomeProducts() {
 
   return (
     <>
-      {products.map((product) => (
+      {products.filter((product) => !product.hidden).map((product) => (
         <ProductCard
           key={product.id}
           image={product.image}
+          mobileImage={product.mobileImage}
           imageAlt={product.imageAlt}
           title={product.title}
           subtitle={product.subtitle}

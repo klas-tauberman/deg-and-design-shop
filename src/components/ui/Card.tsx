@@ -6,6 +6,8 @@ import { Button } from "./Button";
 
 export interface ProductCardProps {
   image: string;
+  /** Optional portrait image shown below the md breakpoint. */
+  mobileImage?: string;
   imageAlt?: string;
   title: string;
   subtitle?: string;
@@ -21,6 +23,7 @@ export interface ProductCardProps {
  */
 export function ProductCard({
   image,
+  mobileImage,
   imageAlt = "",
   title,
   subtitle,
@@ -38,9 +41,18 @@ export function ProductCard({
         src={image}
         alt={imageAlt}
         fill
-        className="object-cover"
+        className={`object-cover ${mobileImage ? "hidden md:block" : ""}`}
         sizes="(max-width: 768px) 100vw, 1408px"
       />
+      {mobileImage && (
+        <Image
+          src={mobileImage}
+          alt={imageAlt}
+          fill
+          className="object-cover md:hidden"
+          sizes="100vw"
+        />
+      )}
 
       {/* Gradient overlay */}
       <div
@@ -55,11 +67,11 @@ export function ProductCard({
       {/* Content */}
       <div className="relative z-10 flex flex-col gap-3 md:flex-row md:items-end md:justify-between w-full">
         <div className="flex flex-col gap-1">
-          <h2 className="text-[64px] font-bold leading-[60px] text-text-primary tracking-tight">
+          <h2 className="text-[min(64px,16vw)] font-bold leading-[60px] text-text-primary tracking-tight">
             {title}
           </h2>
           {subtitle && (
-            <p className="text-[40px] font-bold leading-[52px] text-text-primary">
+            <p className="text-[min(40px,10vw)] font-bold leading-[52px] text-text-primary">
               {subtitle}
             </p>
           )}

@@ -83,6 +83,24 @@ export default function Om() {
             sizes="(max-width: 768px) 100vw, 704px"
           />
         </div>
+        <div className="relative aspect-square rounded-[32px] md:rounded-[var(--radius-block)] overflow-hidden">
+          <Image
+            src="/images/emmer-hel.webp"
+            alt="Helt emmerbröd med korssnitt"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 704px"
+          />
+        </div>
+        <div className="relative aspect-square rounded-[32px] md:rounded-[var(--radius-block)] overflow-hidden">
+          <Image
+            src="/images/levain-och-emmer.webp"
+            alt="Skivat emmerbröd och levain"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 704px"
+          />
+        </div>
       </div>
 
       <Footer
