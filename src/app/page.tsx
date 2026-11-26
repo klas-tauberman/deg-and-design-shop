@@ -2,6 +2,7 @@
 
 import { Hero } from "@/components/ui/Hero";
 import { Footer } from "@/components/ui/Footer";
+import { Reveal } from "@/components/ui/Motion";
 import { HomeProducts } from "./_HomeProducts";
 import { useCart } from "@/lib/cart";
 
@@ -25,6 +26,7 @@ export default function Home() {
         }}
       />
       <HomeProducts />
+      <Reveal>
       <Footer
         contact={{
           email: "info@tauberman.se",
@@ -33,6 +35,7 @@ export default function Home() {
         }}
         copyright="Copyright © Deg & Design 2026"
       />
+      </Reveal>
     </main>
   );
 }

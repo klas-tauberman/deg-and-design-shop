@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ReactNode } from "react";
 import { Button } from "./Button";
+import { Parallax } from "./Motion";
 
 /* ─── Product Card ─────────────────────────────────────────────────────── */
 
@@ -37,22 +38,24 @@ export function ProductCard({
       className={`relative overflow-hidden rounded-[32px] md:rounded-[var(--radius-block)] h-[522px] flex items-end p-4 sm:p-8 ${className}`}
     >
       {/* Background image */}
-      <Image
-        src={image}
-        alt={imageAlt}
-        fill
-        className={`object-cover ${mobileImage ? "hidden md:block" : ""}`}
-        sizes="(max-width: 768px) 100vw, 1408px"
-      />
-      {mobileImage && (
+      <Parallax>
         <Image
-          src={mobileImage}
+          src={image}
           alt={imageAlt}
           fill
-          className="object-cover md:hidden"
-          sizes="100vw"
+          className={`object-cover ${mobileImage ? "hidden md:block" : ""}`}
+          sizes="(max-width: 768px) 100vw, 1408px"
         />
-      )}
+        {mobileImage && (
+          <Image
+            src={mobileImage}
+            alt={imageAlt}
+            fill
+            className="object-cover md:hidden"
+            sizes="100vw"
+          />
+        )}
+      </Parallax>
 
       {/* Gradient overlay */}
       <div

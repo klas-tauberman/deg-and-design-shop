@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
 import { Navbar, NavbarProps } from "./Navbar";
+import { Parallax } from "./Motion";
 
 export interface HeroProps {
   headline: ReactNode;
@@ -36,14 +37,16 @@ export function Hero({
       {/* Background image */}
       {backgroundImage && (
         <>
-          <Image
-            src={backgroundImage}
-            alt={backgroundImageAlt}
-            fill
-            priority
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 1440px"
-          />
+          <Parallax>
+            <Image
+              src={backgroundImage}
+              alt={backgroundImageAlt}
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 1440px"
+            />
+          </Parallax>
           {/* Gradient overlay — matches Figma: multiply blend, dark at bottom */}
           <div
             className="absolute inset-0"

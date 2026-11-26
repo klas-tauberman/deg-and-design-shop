@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { ProductCard } from "@/components/ui/Card";
+import { Reveal } from "@/components/ui/Motion";
 import { Panel } from "@/components/ui/Panel";
 import { Button } from "@/components/ui/Button";
 import { QuantityStepper } from "@/components/ui/QuantityStepper";
@@ -185,8 +186,8 @@ export function HomeProducts() {
   return (
     <>
       {products.filter((product) => !product.hidden).map((product) => (
+        <Reveal key={product.id}>
         <ProductCard
-          key={product.id}
           image={product.image}
           mobileImage={product.mobileImage}
           imageAlt={product.imageAlt}
@@ -208,6 +209,7 @@ export function HomeProducts() {
             announceAdded(product);
           }}
         />
+        </Reveal>
       ))}
 
       <Panel open={active !== null} onClose={() => setActiveId(null)}>

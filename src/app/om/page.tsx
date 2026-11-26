@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
+import { Parallax, Reveal } from "@/components/ui/Motion";
 import { useCart } from "@/lib/cart";
 
 export default function Om() {
@@ -11,14 +12,16 @@ export default function Om() {
   return (
     <main className="bg-bg-default min-h-screen flex flex-col gap-4 p-2 sm:p-4 w-full max-w-[1440px] mx-auto">
       <section className="relative overflow-hidden rounded-[32px] md:rounded-[var(--radius-block)] flex flex-col">
-        <Image
-          src="/images/hero.webp"
-          alt="Nybakat surdegsbröd"
-          fill
-          priority
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 1440px"
-        />
+        <Parallax>
+          <Image
+            src="/images/hero.webp"
+            alt="Nybakat surdegsbröd"
+            fill
+            priority
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 1440px"
+          />
+        </Parallax>
         <div className="absolute inset-0 bg-[#180c07]/[0.56] mix-blend-multiply" aria-hidden="true" />
 
         <div className="relative z-10 flex flex-col gap-8">
@@ -65,44 +68,53 @@ export default function Om() {
       </section>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="relative aspect-square rounded-[32px] md:rounded-[var(--radius-block)] overflow-hidden">
-          <Image
-            src="/images/frallor.webp"
-            alt="Nybakade frallor"
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 704px"
-          />
-        </div>
-        <div className="relative aspect-square rounded-[32px] md:rounded-[var(--radius-block)] overflow-hidden">
-          <Image
-            src="/images/levain.webp"
-            alt="Levain surdegsbröd skivat"
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 704px"
-          />
-        </div>
-        <div className="relative aspect-square rounded-[32px] md:rounded-[var(--radius-block)] overflow-hidden">
-          <Image
-            src="/images/emmer-hel.webp"
-            alt="Helt emmerbröd med korssnitt"
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 704px"
-          />
-        </div>
-        <div className="relative aspect-square rounded-[32px] md:rounded-[var(--radius-block)] overflow-hidden">
-          <Image
-            src="/images/levain-och-emmer.webp"
-            alt="Skivat emmerbröd och levain"
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 704px"
-          />
-        </div>
+        <Reveal className="relative aspect-square rounded-[32px] md:rounded-[var(--radius-block)] overflow-hidden">
+          <Parallax>
+            <Image
+              src="/images/frallor.webp"
+              alt="Nybakade frallor"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 704px"
+            />
+          </Parallax>
+        </Reveal>
+        <Reveal className="relative aspect-square rounded-[32px] md:rounded-[var(--radius-block)] overflow-hidden">
+          <Parallax>
+            <Image
+              src="/images/levain.webp"
+              alt="Levain surdegsbröd skivat"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 704px"
+            />
+          </Parallax>
+        </Reveal>
+        <Reveal className="relative aspect-square rounded-[32px] md:rounded-[var(--radius-block)] overflow-hidden">
+          <Parallax>
+            <Image
+              src="/images/emmer-hel-beskuren.webp"
+              alt="Helt emmerbröd med korssnitt"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 704px"
+            />
+          </Parallax>
+        </Reveal>
+        <Reveal className="relative aspect-square rounded-[32px] md:rounded-[var(--radius-block)] overflow-hidden">
+          <Parallax>
+            <Image
+              src="/images/levain-och-emmer.webp"
+              alt="Skivat emmerbröd och levain"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 704px"
+            />
+          </Parallax>
+        </Reveal>
       </div>
 
+      <Reveal>
       <Footer
         contact={{
           email: "info@tauberman.se",
@@ -111,6 +123,7 @@ export default function Om() {
         }}
         copyright="Copyright © Deg & Design 2026"
       />
+      </Reveal>
     </main>
   );
 }
